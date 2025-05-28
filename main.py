@@ -328,7 +328,8 @@ def thestuff():
         str(LUX_PATH / "Luxxit" / "pom.xml"),
         "clean",
         "package",
-        "-X"
+        "-X",
+        "-Dmaven.compiler.executable=./java/bin/javac"
     ]
     env = os.environ.copy()
     java_bin_dir = find_java_bin_dir(JAVA_PATH, detect_os())
