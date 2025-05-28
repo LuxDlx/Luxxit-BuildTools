@@ -10,6 +10,8 @@
 > ``git clone https://github.com/LuxDlx/Luxxit-BuildTools``
 > 
 > ``cd Luxxit-BuildTools``
+>
+> ``pip install -r requirements.txt --break-system-packages``
 > 
 > ``python main.py``
 
