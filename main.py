@@ -309,14 +309,12 @@ def process_renames(luxxit_path, rename_file):
 
 
 def thestuff():
-    download_file("https://qwertz.app/downloads/LuxApp/renames.txt", ".luxxit/renames.txt", show_progress=True)
+    
     refactor_luxxit_structure(".luxxit/Luxxit")
-    process_renames(".luxxit/Luxxit", ".luxxit/renames.txt")
-
-    download_file("https://qwertz.app/downloads/LuxApp/luxxit.patch", ".luxxit/luxxit.patch", show_progress=True)
+    process_renames(".luxxit/Luxxit", "renames.txt")
     import patching
 
-    patching.apply_patch(".luxxit/Luxxit", ".luxxit/luxxit.patch")
+    patching.apply_patch(".luxxit/Luxxit", "luxxit.patch")
 
     # build with maven
     if detect_os() == "windows":
@@ -366,6 +364,13 @@ def thestuff():
         print("Run luxxit.sh to start the server. Make sure to run 'chmod +x luxxit.sh' first.")
 
 if __name__ == "__main__":
+    if "update" in sys.argv:
+        print("Updating BuildTools...")
+        download_file("https://raw.githubusercontent.com/LuxDlx/Luxxit-BuildTools/refs/heads/master/renames.txt", "renames.txt", show_progress=True)
+        download_file("https://raw.githubusercontent.com/LuxDlx/Luxxit-BuildTools/refs/heads/master/main.py", "main.py", show_progress=True)
+        download_file("https://raw.githubusercontent.com/LuxDlx/Luxxit-BuildTools/refs/heads/master/patching.py", "patching.py", show_progress=True)
+        download_file("https://raw.githubusercontent.com/LuxDlx/Luxxit-BuildTools/refs/heads/master/luxxit.patch", "luxxit.patch", show_progress=True)
+        sys.exit(0)
     if "clean" in sys.argv:
         if LUX_PATH.exists():
             shutil.rmtree(LUX_PATH, onerror=on_rm_error)
