@@ -354,7 +354,7 @@ def thestuff():
         f.write(f'@rem LUXXIT SERVER STARTUP SCRIPT - WINDOWS\n"./java/bin/java" -Djava.awt.headless=true -cp * com.sillysoft.lux.Lux -headless -network=true -public=true -map=RomanEmpireII -cards=4e3 -conts=5 -time=30 -name={USERNAME} -desc=LuxxitPoweredServer! -regCode={REG_CODE}\n@rem Thanks for using Luxxit!\n@rem Made by QWERTZ')
         f.close()
     with open("luxxit.sh", "w", encoding="utf-8") as f:
-        f.write(f'# LUXXIT SERVER STARTUP SCRIPT - LINUX\n"./java/bin/java" -Djava.awt.headless=true -cp * com.sillysoft.lux.Lux -headless -network=true -public=true -map=RomanEmpireII -cards=4e3 -conts=5 -time=30 -name={USERNAME} -desc=LuxxitPoweredServer! -regCode={REG_CODE}\n# Thanks for using Luxxit!\n# Made by QWERTZ')
+        f.write(f'# LUXXIT SERVER STARTUP SCRIPT - LINUX\n"./java/bin/java" -Djava.awt.headless=true -cp "Luxxit.jar:lib/*" com.sillysoft.lux.Lux -headless -network=true -public=true -map=RomanEmpireII -cards=4e3 -conts=5 -time=30 -name={USERNAME} -desc=LuxxitPoweredServer! -regCode={REG_CODE}\n# Thanks for using Luxxit!\n# Made by QWERTZ')
         f.close()
     
     print("LUXXIT BUILD SUCCESS!")
