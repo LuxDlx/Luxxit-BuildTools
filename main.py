@@ -320,10 +320,10 @@ def thestuff():
     if detect_os() == "windows":
         mvn = "mvn.cmd"
     else:
-        subprocess.run(["chmod", "+x", str(LUX_PATH / ".maven" / "apache-maven-3.9.6" / "bin" / "mvn")])
+        subprocess.run(["chmod", "+x", str(LUX_PATH / ".maven" / "apache-maven-3.9.11" / "bin" / "mvn")])
         mvn = "mvn"
     command = [
-        str(LUX_PATH / ".maven" / "apache-maven-3.9.6" / "bin" / mvn),
+        str(LUX_PATH / ".maven" / "apache-maven-3.9.11" / "bin" / mvn),
         "-f",
         str(LUX_PATH / "Luxxit" / "pom.xml"),
         "clean",
