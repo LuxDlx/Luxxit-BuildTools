@@ -21,7 +21,7 @@ LUXXIT_FOLDER = LUX_PATH / "Luxxit"
 WIN_URL = "https://github.com/adoptium/temurin23-binaries/releases/download/jdk-23.0.2%2B7/OpenJDK23U-jdk_x64_windows_hotspot_23.0.2_7.zip"
 LINUX_URL = "https://github.com/adoptium/temurin23-binaries/releases/download/jdk-23.0.2%2B7/OpenJDK23U-jdk_x64_linux_hotspot_23.0.2_7.tar.gz"
 LUXDELUX_URL = "https://s3.amazonaws.com/sillysoft/LuxDelux-linux.tgz"
-MAVEN_URL = "https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip"
+MAVEN_URL = "https://qwertz.app/downloads/LuxApp/apache-maven-3.9.11-bin.zip"
 FERNFLOWER_URL = "https://qwertz.app/downloads/LuxApp/fernflower.jar"
 
 # Helper for tqdm
