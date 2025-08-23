@@ -8,7 +8,7 @@ import stat
 from pathlib import Path
 
 # Constants
-SCRIPT_PATH = Path(os.path.dirname(os.path.abspath(sys.argv[0])))
+SCRIPT_PATH = Path(os.path.dirname(os.path.abspath(sys.argv[0])))f
 LUX_PATH = SCRIPT_PATH / ".luxxit"
 JAVA_PATH = LUX_PATH / ".java"
 INFO_FILE = LUX_PATH / ".info"
@@ -88,6 +88,14 @@ def extract_file(archive_path, dest_dir, os_name=None):
         raise Exception(f"Unknown archive format for {archive_path}")
 
 def find_java_bin_dir(java_path, os_name):
+    if USE_SYSTEM_JAVA:
+        # Try to locate system java using shutil.which
+        java_executable = shutil.which("java")
+        if java_executable:
+            return Path(java_executable).parent
+        else:
+            raise Exception("System Java not found in PATH")
+    
     # Find the bin directory inside the extracted JDK
     for entry in os.scandir(java_path):
         if entry.is_dir():
@@ -107,9 +115,13 @@ def prepare_fernflower_and_luxcore():
     shutil.copy2(luxcore_src, luxcore_dst)
 
 def run_fernflower(java_bin_dir):
+    if USE_SYSTEM_JAVA:
+        jpath = "java"
+    else:
+        jpath = str(java_bin_dir / "java")
     os.makedirs(FERNFLOWER_FOLDER / "decompiled", exist_ok=True)
     fernflower_cmd = [
-        str(java_bin_dir / "java"),
+        jpath,
         "-jar",
         str(FERNFLOWER_JAR),
         str(FERNFLOWER_FOLDER / "LuxCore.jar"),
@@ -119,13 +131,6 @@ def run_fernflower(java_bin_dir):
     env["JAVA_HOME"] = str(java_bin_dir.parent)
     env["PATH"] = str(java_bin_dir) + os.pathsep + env.get("PATH", "")
     print("Running Fernflower decompiler...")
-    print("Fernflower command:", fernflower_cmd)
-    # Assuming java_bin_dir is a Path object
-    java_path = java_bin_dir / "java"
-    print("Java bin exists:", java_path.exists())
-    os_name = detect_os()
-    if not os_name == "windows":
-        subprocess.run(["chmod", "+x", "/mnt/server/Luxxit-BuildTools/.luxxit/.java/jdk-23.0.2+7/bin/java"])
     result = subprocess.run(fernflower_cmd, cwd=FERNFLOWER_FOLDER, env=env, capture_output=True, text=True)
     print(result.stdout)
     if result.returncode != 0:
@@ -413,7 +418,7 @@ if __name__ == "__main__":
             pass
         sys.exit(0)
 
-    
+    USE_SYSTEM_JAVA = input("Use system java ("Y" for system, "N" to automagically downloading java): ")
     REG_CODE = input("Enter your registration code (or leave empty to set it later): ")
     USERNAME = input("Enter your username (or leave empty to set it later): ")
 
