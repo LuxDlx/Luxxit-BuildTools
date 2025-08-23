@@ -8,7 +8,7 @@ import stat
 from pathlib import Path
 
 # Constants
-SCRIPT_PATH = Path(os.path.dirname(os.path.abspath(sys.argv[0])))f
+SCRIPT_PATH = Path(os.path.dirname(os.path.abspath(sys.argv[0])))
 LUX_PATH = SCRIPT_PATH / ".luxxit"
 JAVA_PATH = LUX_PATH / ".java"
 INFO_FILE = LUX_PATH / ".info"
