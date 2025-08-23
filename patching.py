@@ -91,7 +91,7 @@ def apply_patch(target_dir, patch_file):
         try:
             subprocess.run(["git", "init"], cwd=target_dir, check=True)
             subprocess.run(["git", "add", "."], cwd=target_dir, check=True)
-            subprocess.run(["git", "apply", str(patch_file)], cwd=target_dir, check=True)
+            subprocess.run(["git", "apply", "--ignore-space-change", "--ignore-whitespace", str(patch_file)], cwd=target_dir, check=True)
             print("Patch applied successfully!")
         except subprocess.CalledProcessError as e:
             print("Error applying patch with git:", e)
