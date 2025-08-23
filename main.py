@@ -123,6 +123,7 @@ def run_fernflower(java_bin_dir):
     # Assuming java_bin_dir is a Path object
     java_path = java_bin_dir / "java"
     print("Java bin exists:", java_path.exists())
+    os_name = detect_os()
     if not os_name == "windows":
         subprocess.run("chmod", "+x", "/mnt/server/Luxxit-BuildTools/.luxxit/.java/jdk-23.0.2+7/bin/java")
     result = subprocess.run(fernflower_cmd, cwd=FERNFLOWER_FOLDER, env=env, capture_output=True, text=True)
