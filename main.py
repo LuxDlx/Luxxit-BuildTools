@@ -418,7 +418,7 @@ if __name__ == "__main__":
             pass
         sys.exit(0)
 
-    USE_SYSTEM_JAVA = input("Use system java ("Y" for system, "N" to automagically downloading java): ")
+    USE_SYSTEM_JAVA = input('Use system java ("Y" for system, "N" to automagically downloading java): ').lower() == "y"
     REG_CODE = input("Enter your registration code (or leave empty to set it later): ")
     USERNAME = input("Enter your username (or leave empty to set it later): ")
 
