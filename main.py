@@ -119,6 +119,10 @@ def run_fernflower(java_bin_dir):
     env["JAVA_HOME"] = str(java_bin_dir.parent)
     env["PATH"] = str(java_bin_dir) + os.pathsep + env.get("PATH", "")
     print("Running Fernflower decompiler...")
+    print("Fernflower command:", fernflower_cmd)
+    print("Java bin exists:", os.path.exists(java_bin_dir + "/java"))
+    if !os_name == "windows":
+        subprocess.run("chmod", "+x", "/mnt/server/Luxxit-BuildTools/.luxxit/.java/jdk-23.0.2+7/bin/java")
     result = subprocess.run(fernflower_cmd, cwd=FERNFLOWER_FOLDER, env=env, capture_output=True, text=True)
     print(result.stdout)
     if result.returncode != 0:
